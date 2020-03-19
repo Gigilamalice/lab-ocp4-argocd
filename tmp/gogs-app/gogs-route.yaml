@@ -1,0 +1,16 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: gogs
+  namespace: gogs
+  spec:
+  host: gogs.2886795314-80-host20nc.environments.katacoda.com
+  subdomain: ''
+  to:
+    kind: Service
+    name: gogs
+    weight: 100
+  port:
+    targetPort: 3000
+  wildcardPolicy: None
+

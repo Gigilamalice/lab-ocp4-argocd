@@ -1,0 +1,73 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: postgres
+  namespace: gogs
+  labels:
+    name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgres
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: postgres
+    spec:
+      volumes:
+        - name: postgres-data
+#          persistentVolumeClaim:
+#            claimName: postgres
+      containers:
+        - resources:
+            limits:
+              memory: 512Mi
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - '-i'
+                - '-c'
+                - >-
+                  psql -h 127.0.0.1 -U ${POSTGRES_USER} -q -d ${POSTGRES_DB} -c
+                  'SELECT 1'
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 10
+          terminationMessagePath: /dev/termination-log
+          name: postgres
+          env:
+            - name: POSTGRES_USER
+              value: gogs
+            - name: POSTGRES_PASSWORD
+              value: gogs
+            - name: POSTGRES_DB
+              value: gogs
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          ports:
+            - containerPort: 5432
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+          terminationMessagePolicy: File
+          image: 'docker.io/postgres:9.5'
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+
