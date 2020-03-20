@@ -1,0 +1,17 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: reverse-words
+    app.kubernetes.io/instance: reverse-words-app
+  name: reverse-words
+  namespace: reverse-words
+spec:
+  host: reverse-words-reverse-words.apps.cluster-e437.sandbox1131.opentlc.com
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: reverse-words
+    weight: 100
+  wildcardPolicy: None
