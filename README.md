@@ -1,3 +1,5 @@
 # gitops-lab
 
-Katacoda GitOps Lab Repository# lab-ocp4-argocd
+
+''
+oc adm policy add-cluster-role-to-user cluster-admin -z argocd-application-controller -n argocd
