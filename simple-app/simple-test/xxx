@@ -1,1 +1,5 @@
-xxx
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: reverse-words
