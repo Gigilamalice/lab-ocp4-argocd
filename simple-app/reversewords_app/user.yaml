@@ -1,6 +1,0 @@
-apiVersion: user.openshift.io/v1
-groups: null
-identities: null
-kind: User
-metadata:
-  name: luigi
