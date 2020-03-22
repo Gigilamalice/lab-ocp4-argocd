@@ -1,6 +1,7 @@
 # gitops-lab
 
- * Formation:  Introduction to GitOps with OpenShift 
+ * Formation:  Introduction to GitOps with OpenShift
+ 
  https://learn.openshift.com/introduction/gitops-introduction/?extIdCarryOver=true&sc_cid=701f2000001Css5AAC
  
 
