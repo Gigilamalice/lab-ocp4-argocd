@@ -1,4 +1,4 @@
-# gitops-lab
+# Lab OpenShift GitOps
 
  * Formation:  Introduction to GitOps with OpenShift
  
