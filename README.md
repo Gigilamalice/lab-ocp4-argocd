@@ -1,13 +1,13 @@
 # Lab OpenShift GitOps
 
- * Formation:  Introduction to GitOps with OpenShift
+ ### Formation:  Introduction to GitOps with OpenShift
  
  https://learn.openshift.com/introduction/gitops-introduction/?extIdCarryOver=true&sc_cid=701f2000001Css5AAC
  
 
 ## Installer Operateur OCP4 ArgoCD
 
-* Creer un projet ArgoCD
+### Creer un projet ArgoCD
 
 ```shell
 oc new-project argocd
