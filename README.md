@@ -1,8 +1,10 @@
 # Lab OpenShift GitOps
 
- ### Formation:  Introduction to GitOps with OpenShift
+## Sources Documentaires
+
+### Formation: Introduction to GitOps with OpenShift
  
- https://learn.openshift.com/introduction/gitops-introduction/?extIdCarryOver=true&sc_cid=701f2000001Css5AAC
+https://learn.openshift.com/introduction/gitops-introduction/?extIdCarryOver=true&sc_cid=701f2000001Css5AAC
  
 
 ## Installer Operateur OCP4 ArgoCD
@@ -13,11 +15,12 @@
 oc new-project argocd
 ```
 
-* Argo CD Provioded by Argocd Community
+### Installer l'operateur
 
-Community Operators are operators which have not been vetted or verified by Red Hat. Community Operators should be used with caution because their stability is unknown. Red Hat provides no support for Community Operators.
+Argo CD Provioded by Argocd Community
+* Community Operators are operators which have not been vetted or verified by Red Hat. Community Operators should be used with caution because their stability is unknown. Red Hat provides no support for Community Operators.
 
-* Creer une instance Argo CD
+### Creer une instance Argo CD
 
 ```shell
 apiVersion: argoproj.io/v1alpha1
@@ -28,13 +31,12 @@ metadata:
 spec: {}
 ```
 
-* Récupérer le password admin gitops
+### Récupérer le password admin gitops
 
 <...>
 
-## Donner le droit "cluser-admin" au compte de service "argocd-application-controller"
+### Donner le droit "cluser-admin" au compte de service "argocd-application-controller"
 
-* !!! A Vérifier si nécessaire !!!
 ```shell
 oc adm policy add-cluster-role-to-user cluster-admin -z argocd-application-controller -n argocd
 ```
@@ -42,16 +44,16 @@ oc adm policy add-cluster-role-to-user cluster-admin -z argocd-application-contr
 ## Aller sur le Gui GitOps
 
 
-* Se logger
+### Se logger sur l'interface graphique
 https://my-argocd-server-argocd.apps.cluster-????.sandbox????.opentlc.c
 
-User = admin
-Password  = (nom du pod argocd-server) argocd-server-5dbbc86f74-jvj8zom/settings/clusters
+* User = admin
+* Password  = (nom du pod argocd-server) argocd-server-5dbbc86f74-jvj8zom/settings/clusters
 
-* Ajouter le repo-git
+### Ajouter le repo-git
 https://github.com/Gigilamalice/lab-ocp4-argocd.git
 
-* Ajouter le cluster
+### Ajouter le cluster
 https://kubernetes.default.svc
 
 
