@@ -5,7 +5,6 @@
  https://learn.openshift.com/introduction/gitops-introduction/?extIdCarryOver=true&sc_cid=701f2000001Css5AAC
  
 
-
 ## Installer Operateur OCP4 ArgoCD
 
 * Creer un projet ArgoCD
@@ -24,33 +23,47 @@ Community Operators are operators which have not been vetted or verified by Red 
 apiVersion: argoproj.io/v1alpha1
 kind: ArgoCD
 metadata:
-  name: example-argocd
+  name: my-argocd
   namespace: argocd
 spec: {}
 ```
+
+* Récupérer le password admin gitops
+
+<...>
+
+## Donner le droit "cluser-admin" au compte de service "argocd-application-controller"
 
 * !!! A Vérifier si nécessaire !!!
 ```shell
 oc adm policy add-cluster-role-to-user cluster-admin -z argocd-application-controller -n argocd
 ```
 
-* En prerequis il faut créer le projet de l'application
-```shell
-oc new-project reverse-words
-```
-* Se connecter à l'application
+## Aller sur le Gui GitOps
 
-https://example-argocd-server-argocd.apps.cluster-????.sandbox????.opentlc.c
+
+* Se logger
+https://my-argocd-server-argocd.apps.cluster-????.sandbox????.opentlc.c
+
 User = admin
-Password (nom du pod argocd-server) = example-argocd-server-5dbbc86f74-jvj8zom/settings/clusters
-
-## Creer une application
+Password  = (nom du pod argocd-server) argocd-server-5dbbc86f74-jvj8zom/settings/clusters
 
 * Ajouter le repo-git
 https://github.com/Gigilamalice/lab-ocp4-argocd.git
 
 * Ajouter le cluster
 https://kubernetes.default.svc
+
+
+## Creer une application à opérer avec GitOps
+
+* En prerequis il faut créer le projet de l'application
+```shell
+oc new-project reverse-words
+```
+* se loger avec le cli argocd
+
+<....>
 
 * Creer l'application
 ```shell
